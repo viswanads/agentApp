@@ -1,0 +1,118 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Insert Show Details</ion-title>
+     
+        <ion-buttons end> <button ion-button (click)="signOut()" color="primary"> Sign Out </button> </ion-buttons> 
+    </ion-navbar>
+      <!-- <ion-nav-buttons side="left">
+          <button class="button" ng-click="signOut()">
+            MI
+          </button>
+        </ion-nav-buttons>
+        <ion-toolbar>
+            <ion-title>Subheader</ion-title>
+          </ion-toolbar> -->
+          
+  </ion-header>
+  <ion-content class="login-content" padding>
+    <!-- <ion-row class="logo-row">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="http://placehold.it/300x200"/>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row> -->
+    <div class="login-box">
+      <form (ngSubmit)="login()" #registerForm="ngForm">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              <ion-item class="transparent">
+                  <ion-label>Location</ion-label>
+                  <ion-select name="location" [(ngModel)]="registerCredentials.location" required>
+                    <ion-option  *ngFor="let loc of locations" value="{{loc.locationId}}">{{loc.name}}</ion-option>
+                  </ion-select>
+              </ion-item>
+                
+              <ion-item class="transparent">
+                  <ion-label>Theatre</ion-label>
+                  <ion-select name="theatre" [(ngModel)]="registerCredentials.theatre" required>
+                      <ng-container *ngFor="let the of optionsList">
+                      <ion-option *ngIf="the.locationId == registerCredentials.location" value="{{the.theatreId}}">{{the.theatreName}}</ion-option>
+                    </ng-container>
+                    </ion-select>
+              </ion-item>
+
+              <ion-item class="transparent">
+                  <ion-label>Exhibitor</ion-label>
+                  <ion-select name="exhibitor" [(ngModel)]="registerCredentials.exhibitor" required>
+                    <ng-container *ngFor="let exe of optionsList">
+                      <ion-option *ngIf="exe.theatreId == registerCredentials.theatre" value="{{exe.exhibitorId}}">{{exe.exhibitorName}}</ion-option>
+                    </ng-container>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item class="transparent">
+                  <ion-label>Movie</ion-label>
+                  <ion-select name="movie" [(ngModel)]="registerCredentials.movie" required>
+                      <ng-container *ngFor="let mov of optionsList">
+                        <ion-option *ngIf="mov.theatreId == registerCredentials.theatre" value="{{mov.movieId}}">{{mov.movieName}}</ion-option>
+                      </ng-container>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item class="transparent">
+                <ion-label>Date</ion-label>
+                <ion-input name="date" type="date" required [(ngModel)]="registerCredentials.date" (change)="dateshow()"></ion-input>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col></ion-col>
+            <ion-col style="text-align: center">Tickets</ion-col>
+            <ion-col style="text-align: center">Price</ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>Class 1</ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c1Tickets" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c1Tickets" ></ion-input></ion-item></ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c1Price" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c1Price" ></ion-input></ion-item></ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>Class 2</ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c2Tickets" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c2Tickets" ></ion-input></ion-item></ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c2Price" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c2Price" ></ion-input></ion-item></ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>Class 3</ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c3Tickets" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c3Tickets" ></ion-input></ion-item></ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c3Price" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c3Price" ></ion-input></ion-item></ion-col>
+            </ion-row>
+
+        <ion-row>
+            <ion-col>Class 4</ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c4Tickets" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c4Tickets" ></ion-input></ion-item></ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c4Price" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c4Price" ></ion-input></ion-item></ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>Class 5</ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c5Tickets" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c5Tickets" ></ion-input></ion-item></ion-col>
+            <ion-col><ion-item class="transparent"><ion-input name="c5Price" type="number" pattern="[0-9]*" required [(ngModel)]="registerCredentials.c5Price" ></ion-input></ion-item></ion-col>
+        </ion-row>
+                
+
+        <ion-row>
+          <ion-col class="signup-col">
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid" color="danger">Submit</button>
+          </ion-col>
+        </ion-row>
+        
+      </form>
+    </div>
+  </ion-content>

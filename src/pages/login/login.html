@@ -1,0 +1,68 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<!-- <ion-content class="login-background" padding>
+<ion-list class="empty-space"></ion-list>
+  <div class="login-form">
+    <ion-list>
+
+    <ion-item class="transparent">
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" value="" class="inputTypes"></ion-input>
+    </ion-item>
+
+    <ion-item class="transparent">
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" value="" class="inputTypes"></ion-input>
+      </ion-item>
+     <ion-item class="hide">dont delete this</ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block  >Sign In</button>
+  </div>
+</div>
+
+</ion-content> -->
+
+<ion-content  class="login-background" padding>
+    <ion-list class="empty-space"></ion-list>
+  <div class="login-form">
+    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item class="transparent">
+              <ion-label floating>Mobile : </ion-label>
+              <ion-input class="inputItems" name="mobile" type="number" pattern="[0-9]*" required [(ngModel)]="authData.mobile" #loginField></ion-input>
+            </ion-item>
+            <ion-item class="transparent">
+              <ion-label floating>Password : </ion-label>
+              <ion-input class="inputItems" type="text" name="passwordShow" required [(ngModel)]="authData.password" *ngIf="passwordCheckbox"></ion-input>
+              <ion-input class="inputItems" type="password" name="passwordHide" required [(ngModel)]="authData.password" *ngIf="!passwordCheckbox"></ion-input>
+            </ion-item>
+            <ion-item class="transparent">
+                <ion-label for="checkbox" *ngIf="!passwordCheckbox" class="inputItems">show password</ion-label>
+                <ion-label for="checkbox" *ngIf="passwordCheckbox" class="inputItems">hide password</ion-label>
+                <ion-checkbox name="showPassword" id="checkbox" [(ngModel)]="passwordCheckbox"></ion-checkbox>
+              </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid" color="loginButton">Login
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+  </ion-content>
